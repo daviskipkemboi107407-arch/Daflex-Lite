@@ -925,41 +925,7 @@
             display: block;
         }
 
-        /* Notify Form */
-        .notify-form {
-            display: flex;
-            gap: 12px;
-            max-width: 500px;
-            margin: 32px auto 0;
-            width: 100%;
-        }
 
-        @media (max-width: 480px) {
-            .notify-form {
-                flex-direction: column;
-            }
-            .notify-input {
-                width: 100%;
-            }
-            .btn {
-                width: 100%;
-            }
-        }
-
-        .notify-input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 14px 20px;
-            color: white;
-            font-family: inherit;
-        }
-
-        .notify-input:focus {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
-        }
 
         /* Screenshot Cards */
         .screenshot-grid {
@@ -1345,20 +1311,7 @@
             </div>
         </section>
 
-        <!-- Notify Section -->
-        <section id="notify" style="background: rgba(102, 0, 255, 0.03); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-            <div class="container" style="text-align: center;">
-                <h2 style="font-size: 2.5rem; font-weight: 950; margin-bottom: 16px;">Get Notified <span class="gradient-text">on Launch.</span></h2>
-                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Be the first to experience the official version of Daflex Lite. We'll send you an invite as soon as we go live.</p>
-                <form class="notify-form" id="notifyForm">
-                    <input type="email" placeholder="Enter your email address" class="notify-input" required>
-                    <button type="submit" class="btn btn-primary">Notify Me</button>
-                </form>
-                <div id="notifySuccess" style="margin-top: 24px; color: #4ade80; font-weight: 700; display: none;">
-                    You're on the list! We'll notify you on launch 🚀
-                </div>
-            </div>
-        </section>
+
 
         <!-- FAQ Section -->
         <section id="faq">
@@ -1721,15 +1674,7 @@
             });
         });
 
-        // Notify Form
-        document.getElementById('notifyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const success = document.getElementById('notifySuccess');
-            
-            form.style.display = 'none';
-            success.style.display = 'block';
-        });
+
 
         // Download Modal logic
         const downloadModal = document.getElementById('download-modal');
