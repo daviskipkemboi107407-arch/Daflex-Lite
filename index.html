@@ -1011,6 +1011,90 @@
             color: var(--primary);
         }
 
+        /* Download Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #0d1117;
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* Cookie Banner */
         #cookie-banner {
             position: fixed;
@@ -1171,7 +1255,7 @@
                     <p class="hero-subtitle">A modern messaging experience designed for speed, safety, and minimalism. No bloat. No distractions. Just pure connection.</p>
 
                     <div class="hero-btns" style="margin-top: 48px;">
-                        <a href="#download" class="btn btn-primary">Download APK</a>
+                        <button class="btn btn-primary btn-download-apk">Download APK</button>
                         <a href="#features" class="btn btn-outline">View Features</a>
                     </div>
                 </div>
@@ -1463,7 +1547,7 @@
                     </div>
                     <h2 class="logo-text">Ready to Connect?</h2>
                     <p style="color: var(--text-muted); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">Join the next generation of messaging. Lightweight, fast, and secure. Download Daflex Lite for your device today.</p>
-                    <a href="#" class="btn btn-primary" style="padding: 24px 60px; border-radius: 20px; font-size: 1.1rem;">Download Daflex Lite APK</a>
+                    <button class="btn btn-primary btn-download-apk" style="padding: 24px 60px; border-radius: 20px; font-size: 1.1rem;">Download Daflex Lite APK</button>
                     <div style="margin-top: 32px; display: flex; justify-content: center; gap: 24px; opacity: 0.5; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
                         <span>Android 8.0+</span>
                         <span>iOS 14+</span>
@@ -1501,7 +1585,7 @@
                     <a href="#features" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Features</a>
                     <a href="#preview" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Preview</a>
                     <a href="#faq" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;">FAQ</a>
-                    <a href="#download" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Download APK</a>
+                    <a href="#download" class="btn-download-apk" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; cursor: pointer;">Download APK</a>
                 </div>
             </div>
             <div>
@@ -1534,6 +1618,18 @@
             <p style="color: #64748b; font-size: 0.75rem; font-weight: 500; text-transform: none; letter-spacing: normal; width: 100%;">Built with <span style="color: var(--primary);">💜</span> by Davis</p>
         </div>
     </footer>
+
+    <div id="download-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon">🚀</div>
+                <h2>Coming Soon!</h2>
+            </div>
+            <p>Daflex Lite is currently under development 🚀 Drop your email below to get notified when we launch!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTn34j2yckneDWTpbqU8hXMruwtJ6HjXrvM3XmOcTFm51Jnw/viewform" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Join the Waitlist</a>
+        </div>
+    </div>
 
     <script>
         // Loading Screen
@@ -1635,6 +1731,32 @@
             success.style.display = 'block';
         });
 
+        // Download Modal logic
+        const downloadModal = document.getElementById('download-modal');
+        const modalClose = document.getElementById('modalClose');
+        const downloadBtns = document.querySelectorAll('.btn-download-apk');
+
+        downloadBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scroll
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            downloadModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
+        });
+
+        // Close on click outside
+        downloadModal.addEventListener('click', (e) => {
+            if (e.target === downloadModal) {
+                downloadModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
         // Background Particles
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
@@ -1727,7 +1849,16 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId === '#' || !targetId) return;
+                
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
+                
+                if (!targetId) return;
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
