@@ -543,13 +543,15 @@
 
         @media (max-width: 480px) {
             .hero-content h1 { 
-                font-size: 2rem; 
-                line-height: 1.1;
+                font-size: 1.8rem; 
+                line-height: 1.2;
                 margin-bottom: 16px;
                 width: 100%;
-                max-width: calc(100vw - 40px);
+                max-width: 100%;
+                padding: 0 10px;
                 margin-left: auto;
                 margin-right: auto;
+                box-sizing: border-box;
             }
             .hero-badge {
                 font-size: 0.65rem;
@@ -557,10 +559,11 @@
             }
             .hero-subtitle {
                 font-size: 0.95rem;
-                padding: 0 10px;
-                max-width: calc(100vw - 40px);
+                padding: 0 15px;
+                max-width: 100%;
                 margin-left: auto;
                 margin-right: auto;
+                box-sizing: border-box;
             }
         }
 
@@ -1285,56 +1288,14 @@
             </div>
         </section>
 
-        <!-- See It In Action Section -->
-        <section id="preview">
-            <div class="container" style="text-align: center; margin-bottom: 60px;">
-                <span class="feature-label">Gallery</span>
-                <h2 style="font-size: 3rem; font-weight: 950; margin-bottom: 16px;">See Daflex Lite <span class="gradient-text">In Action.</span></h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Experience the fluid animations and minimalist design that makes Daflex Lite the fastest chat app on the market.</p>
-            </div>
-            
-            <div class="container">
-                <div class="screenshot-grid">
-                    <div class="screenshot-card">
-                        <div class="phone-inner" style="height: 480px; transform: scale(0.95);">
-                            <div class="phone-status"><span>9:41</span><div style="width: 40px; height: 12px; background: black; border-radius: 99px;"></div></div>
-                            <div class="phone-header"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop" class="avatar-small"><div><div class="name-small">Sarah Miller</div><div class="status-dot">Active Now</div></div></div>
-                            <div class="chat-content"><div class="bubble left">This interface is sick!</div><div class="bubble right">Right? So smooth.</div><div class="bubble left">Love the dark theme.</div></div>
-                        </div>
-                        <span>Chat Screen</span>
-                    </div>
-                    <div class="screenshot-card">
-                        <div class="phone-inner" style="height: 480px; transform: scale(0.95);">
-                            <div class="phone-status"><span>9:41</span><div style="width: 40px; height: 12px; background: black; border-radius: 99px;"></div></div>
-                            <div class="phone-header"><div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 12px;">D</div><div><div class="name-small">Davis</div><div class="status-dot" style="color: var(--text-muted)">Elite Member</div></div></div>
-                            <div style="padding: 24px; text-align: center;">
-                                <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.05); margin: 0 auto 16px; border: 2px solid var(--primary);"></div>
-                                <div style="font-weight: 800;">My Profile</div>
-                                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 24px;">
-                                    <div style="height: 40px; background: rgba(255,255,255,0.03); border-radius: 12px;"></div>
-                                    <div style="height: 40px; background: rgba(255,255,255,0.03); border-radius: 12px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <span>Profile Screen</span>
-                    </div>
-                    <div class="screenshot-card">
-                        <div class="phone-inner" style="height: 480px; transform: scale(0.95);">
-                            <div class="phone-status"><span>9:41</span><div style="width: 40px; height: 12px; background: black; border-radius: 99px;"></div></div>
-                            <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
-                                <div style="font-size: 1.5rem; font-weight: 900;">Home</div>
-                                <div style="display: flex; items-center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid var(--border-subtle);">
-                                    <div style="width: 40px; height: 40px; border-radius: 12px; background: var(--primary);"></div>
-                                    <div style="flex: 1;"><div style="height: 10px; width: 60%; background: white; margin-bottom: 6px; border-radius: 4px;"></div><div style="height: 8px; width: 30%; background: var(--text-muted); border-radius: 4px;"></div></div>
-                                </div>
-                                <div style="display: flex; items-center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid var(--border-subtle);">
-                                    <div style="width: 40px; height: 40px; border-radius: 12px; background: var(--secondary);"></div>
-                                    <div style="flex: 1;"><div style="height: 10px; width: 40%; background: white; margin-bottom: 6px; border-radius: 4px;"></div><div style="height: 8px; width: 50%; background: var(--text-muted); border-radius: 4px;"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <span>Home Screen</span>
-                    </div>
+        <!-- App Preview Section -->
+        <section id="preview" style="padding: 100px 0;">
+            <div class="container" style="text-align: center;">
+                <div style="padding: 80px 40px; background: rgba(102, 0, 255, 0.03); border: 1px dashed rgba(102, 0, 255, 0.2); border-radius: 24px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; background: var(--primary); filter: blur(100px); opacity: 0.1; pointer-events: none;"></div>
+                    <span class="feature-label" style="margin-bottom: 24px;">Coming Soon</span>
+                    <h2 style="font-size: 2.5rem; font-weight: 950; margin-bottom: 16px;">App Preview <span class="gradient-text">Coming Soon</span></h2>
+                    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">We're currently polishing the latest screenshots to show you the best of Daflex Lite. Stay tuned for the update!</p>
                 </div>
             </div>
         </section>
